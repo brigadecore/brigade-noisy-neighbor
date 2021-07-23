@@ -1,0 +1,39 @@
+## Default values for brigade-noisy-neighbor
+## This is a YAML-formatted file.
+## Declare variables to be passed into your templates.
+
+image:
+  repository: brigadecore/brigade-noisy-neighbor
+  ## tag should only be specified if you want to override Chart.appVersion
+  ## The default tag is the value of .Chart.AppVersion
+  # tag:
+  pullPolicy: IfNotPresent
+
+## Settings related to connecting to the Brigade API server
+brigade:
+  ## Address of your Brigade 2 API server, including leading protocol
+  ## (http:// or https://)
+  apiAddress: https://brigade-apiserver.brigade.svc.cluster.local
+  ## API token belonging to a Brigade 2 service account
+  apiToken: <placeholder>
+  ## Whether to ignore cert warning from the API server
+  apiIgnoreCertWarnings: true
+
+noiseFrequency: 5s
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as
+  # a conscious choice for the user. This also increases chances charts run on
+  # environments with little resources, such as Minikube. If you do want to
+  # specify resources, uncomment the following lines, adjust them as
+  # necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+nodeSelector: {}
+
+tolerations: []
