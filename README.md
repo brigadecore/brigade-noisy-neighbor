@@ -1,5 +1,8 @@
 # Brigade Noisy Neighbor
 
+
+
+
 Brigade Noisy Neighbor emits events (noise) into a Brigade 2 installation's
 event bus at a configurable frequency. This is useful for applying load to a
 Brigade 2 installation for testing purposes or to gain operational insight.
