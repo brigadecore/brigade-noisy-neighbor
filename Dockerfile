@@ -11,7 +11,7 @@ COPY go.sum go.sum
 
 RUN go build \
   -o bin/noisy-neighbor \
-  -ldflags "-w -X github.com/brigadecore/brigade-noisy-neighbor/internal/version.version=$VERSION -X github.com/brigadecore/brigade-noisy-neighbor/internal/version.commit=$COMMIT" \
+  -ldflags "-w -X github.com/brigadecore/brigade-foundations/version.version=$VERSION -X github.com/brigadecore/brigade-foundations/version.commit=$COMMIT" \
   .
 
 FROM scratch

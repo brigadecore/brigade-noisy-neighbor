@@ -3,7 +3,7 @@ package main
 import (
 	"time"
 
-	"github.com/brigadecore/brigade-noisy-neighbor/internal/os"
+	"github.com/brigadecore/brigade-foundations/os"
 	"github.com/brigadecore/brigade/sdk/v2/restmachinery"
 )
 
