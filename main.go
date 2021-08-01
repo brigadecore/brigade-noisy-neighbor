@@ -5,7 +5,7 @@ import (
 	"log"
 	"time"
 
-	"github.com/brigadecore/brigade-noisy-neighbor/internal/version"
+	"github.com/brigadecore/brigade-foundations/version"
 	"github.com/brigadecore/brigade/sdk/v2"
 	"github.com/brigadecore/brigade/sdk/v2/core"
 )
