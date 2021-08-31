@@ -49,26 +49,25 @@ $ brig role grant EVENT_CREATOR
 
 For now, we're using the [GitHub Container Registry](https://ghcr.io) (which is
 an [OCI registry](https://helm.sh/docs/topics/registries/)) to host our Helm
-chart. Helm 3 has _experimental_ support for OCI registries. In the event that
-the Helm 3 dependency proves troublesome for users, or in the event that this
+chart. Helm 3.7 has _experimental_ support for OCI registries. In the event that
+the Helm 3.7 dependency proves troublesome for users, or in the event that this
 experimental feature goes away, or isn't working like we'd hope, we will revisit
 this choice before going GA.
 
-To install Brigade Noisy Neighbor, begin by pulling the chart from GCR and
-exporting it to some location on your local system. Here, we export it to
-`~/charts`:
+First, be sure you are using
+[Helm 3.7.0-rc.1](https://github.com/helm/helm/releases/tag/v3.7.0-rc.1) and
+enable experimental OCI support:
 
 ```console
 $ export HELM_EXPERIMENTAL_OCI=1
-$ helm chart pull ghcr.io/brigadecore/brigade-noisy-neighbor:v0.1.0
-$ helm chart export ghcr.io/brigadecore/brigade-noisy-neighbor:v0.1.0 -d ~/charts
 ```
 
 Use the following command to extract the full set of configuration options from
 the chart. Here we're storing a copy at `~/brigade-noisy-neighbor-values.yaml`:
 
 ```console
-$ helm inspect values ~/charts/brigade-noisy-neighbor > ~/brigade-noisy-neighbor-values.yaml
+$ helm inspect values oci://ghcr.io/brigadecore/brigade-noisy-neighbor \
+  --version v0.2.0 > ~/brigade-noisy-neighbor-values.yaml
 ```
 
 Edit the configuration (`~/brigade-noisy-neighbor-values.yaml` in this example).
@@ -86,7 +85,9 @@ At minimum, you will need to make the following changes:
 Install Brigade Noisy Neighbor, referencing your edited configuration:
 
 ```console
-$ helm install brigade-noisy-neighbor ~/charts/brigade-noisy-neighbor \
+$ helm install brigade-noisy-neighbor \
+  oci://ghcr.io/brigadecore/brigade-noisy-neighbor \
+  --version v0.2.0 \
   --create-namespace \
   --namespace brigade-noisy-neighbor \
   --values ~/brigade-noisy-neighbor-values.yaml \
