@@ -4,18 +4,15 @@ metadata:
   name: {{ include "brigade-noisy-neighbor.fullname" . }}
   labels:
     {{- include "brigade-noisy-neighbor.labels" . | nindent 4 }}
-    {{- include "brigade-noisy-neighbor.labels" . | nindent 4 }}
 spec:
   replicas: 1
   selector:
     matchLabels:
       {{- include "brigade-noisy-neighbor.selectorLabels" . | nindent 6 }}
-      {{- include "brigade-noisy-neighbor.labels" . | nindent 6 }}
   template:
     metadata:
       labels:
         {{- include "brigade-noisy-neighbor.selectorLabels" . | nindent 8 }}
-        {{- include "brigade-noisy-neighbor.labels" . | nindent 8 }}
       annotations:
         checksum/secret: {{ include (print $.Template.BasePath "/secret.yaml") . | sha256sum }}
     spec:
