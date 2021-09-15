@@ -31,8 +31,8 @@ Noisy Neighbor:
 
 ```console
 $ brig service-account create \
-  --id brigade-noisy-neighbor \
-  --description "Used by Brigade Noisy Neighbor"
+    --id brigade-noisy-neighbor \
+    --description "Used by Brigade Noisy Neighbor"
 ```
 
 This command will display a token that Brigade Noisy Neighbor can use for
@@ -45,8 +45,8 @@ Now grant the service account permission to create events from the
 
 ```console
 $ brig role grant EVENT_CREATOR
-  --service-account brigade-noisy-neighbor \
-  --source github.com/brigadecore/brigade-noisy-neigbor
+    --service-account brigade-noisy-neighbor \
+    --source github.com/brigadecore/brigade-noisy-neigbor
 ```
 
 ### Installing Brigade Noisy Neighbor
@@ -71,7 +71,7 @@ the chart. Here we're storing a copy at `~/brigade-noisy-neighbor-values.yaml`:
 
 ```console
 $ helm inspect values oci://ghcr.io/brigadecore/brigade-noisy-neighbor \
-  --version v0.2.1 > ~/brigade-noisy-neighbor-values.yaml
+    --version v0.2.1 > ~/brigade-noisy-neighbor-values.yaml
 ```
 
 Edit the configuration (`~/brigade-noisy-neighbor-values.yaml` in this example).
@@ -90,12 +90,12 @@ Install Brigade Noisy Neighbor, referencing your edited configuration:
 
 ```console
 $ helm install brigade-noisy-neighbor \
-  oci://ghcr.io/brigadecore/brigade-noisy-neighbor \
-  --version v0.2.1 \
-  --create-namespace \
-  --namespace brigade-noisy-neighbor \
-  --values ~/brigade-noisy-neighbor-values.yaml \
-  --wait
+    oci://ghcr.io/brigadecore/brigade-noisy-neighbor \
+    --version v0.2.1 \
+    --create-namespace \
+    --namespace brigade-noisy-neighbor \
+    --values ~/brigade-noisy-neighbor-values.yaml \
+    --wait
 ```
 
 ### Subscribing to Noise Events
