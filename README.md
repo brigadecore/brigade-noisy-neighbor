@@ -4,9 +4,13 @@
 [![codecov](https://codecov.io/gh/brigadecore/brigade-noisy-neighbor/branch/main/graph/badge.svg?token=H4P57ZBUCY)](https://codecov.io/gh/brigadecore/brigade-noisy-neighbor)
 [![Go Report Card](https://goreportcard.com/badge/github.com/brigadecore/brigade-noisy-neighbor)](https://goreportcard.com/report/github.com/brigadecore/brigade-noisy-neighbor)
 
+<img width="100" align="left" src="logo.png">
+
 Brigade Noisy Neighbor emits events (noise) into a Brigade 2 installation's
 event bus at a configurable frequency. This is useful for applying load to a
 Brigade 2 installation for testing purposes or to gain operational insight.
+
+<br clear="left"/>
 
 Brigade 2 itself is currently in an _beta_ state and remains under active
 development, as such, the same is true for this add-on component.
