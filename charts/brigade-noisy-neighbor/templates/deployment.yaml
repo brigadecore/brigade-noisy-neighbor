@@ -27,7 +27,7 @@ spec:
           valueFrom:
             secretKeyRef:
               name: {{ include "brigade-noisy-neighbor.fullname" . }}
-              key: api-token
+              key: brigadeAPIToken
         - name: API_IGNORE_CERT_WARNINGS
           value: {{ quote .Values.brigade.apiIgnoreCertWarnings }}
         - name: NOISE_FREQUENCY
