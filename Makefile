@@ -184,6 +184,9 @@ IMAGE_PULL_POLICY ?= Always
 
 .PHONY: hack-deploy
 hack-deploy:
+ifndef BRIGADE_API_TOKEN
+	@echo "BRIGADE_API_TOKEN must be defined" && false
+endif
 	helm dep up charts/brigade-noisy-neighbor && \
 	helm upgrade brigade-noisy-neighbor charts/brigade-noisy-neighbor \
 		--install \
@@ -193,7 +196,8 @@ hack-deploy:
 		--timeout 60s \
 		--set image.repository=$(DOCKER_IMAGE_NAME) \
 		--set image.tag=$(IMMUTABLE_DOCKER_TAG) \
-		--set image.pullPolicy=$(IMAGE_PULL_POLICY)
+		--set image.pullPolicy=$(IMAGE_PULL_POLICY) \
+		--set brigade.apiToken=$(BRIGADE_API_TOKEN)
 
 .PHONY: hack
 hack: hack-push hack-deploy
