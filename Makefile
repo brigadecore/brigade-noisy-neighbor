@@ -28,17 +28,6 @@ ifneq ($(SKIP_DOCKER),true)
 		-w /workspaces/brigade-noisy-neighbor \
 		$(GO_DEV_IMAGE)
 
-	KANIKO_IMAGE := brigadecore/kaniko:v0.2.0
-
-	KANIKO_DOCKER_CMD := docker run \
-		-it \
-		--rm \
-		-e SKIP_DOCKER=true \
-		-e DOCKER_PASSWORD=$${DOCKER_PASSWORD} \
-		-v $(PROJECT_ROOT):/workspaces/brigade-noisy-neighbor \
-		-w /workspaces/brigade-noisy-neighbor \
-		$(KANIKO_IMAGE)
-
 	HELM_IMAGE := brigadecore/helm-tools:v0.4.0
 
 	HELM_DOCKER_CMD := docker run \
@@ -126,12 +115,13 @@ upload-code-coverage:
 
 .PHONY: build
 build:
-	$(KANIKO_DOCKER_CMD) kaniko \
+	docker buildx build \
+		-t $(DOCKER_IMAGE_NAME):$(IMMUTABLE_DOCKER_TAG) \
+		-t $(DOCKER_IMAGE_NAME):$(MUTABLE_DOCKER_TAG) \
 		--build-arg VERSION=$(VERSION) \
 		--build-arg COMMIT=$(GIT_VERSION) \
-		--dockerfile /workspaces/brigade-noisy-neighbor/Dockerfile \
-		--context dir:///workspaces/brigade-noisy-neighbor/ \
-		--no-push
+		--platform linux/amd64,linux/arm64 \
+		.
 
 ################################################################################
 # Publish                                                                      #
@@ -142,16 +132,15 @@ publish: push publish-chart
 
 .PHONY: push
 push:
-	$(KANIKO_DOCKER_CMD) sh -c ' \
-		docker login $(DOCKER_REGISTRY) -u $(DOCKER_USERNAME) -p $${DOCKER_PASSWORD} && \
-		kaniko \
-			--build-arg VERSION="$(VERSION)" \
-			--build-arg COMMIT="$(GIT_VERSION)" \
-			--dockerfile /workspaces/brigade-noisy-neighbor/Dockerfile \
-			--context dir:///workspaces/brigade-noisy-neighbor/ \
-			--destination $(DOCKER_IMAGE_NAME):$(IMMUTABLE_DOCKER_TAG) \
-			--destination $(DOCKER_IMAGE_NAME):$(MUTABLE_DOCKER_TAG) \
-	'
+	docker login $(DOCKER_REGISTRY) -u $(DOCKER_USERNAME) -p $${DOCKER_PASSWORD}
+	docker buildx build \
+		-t $(DOCKER_IMAGE_NAME):$(IMMUTABLE_DOCKER_TAG) \
+		-t $(DOCKER_IMAGE_NAME):$(MUTABLE_DOCKER_TAG) \
+		--build-arg VERSION=$(VERSION) \
+		--build-arg COMMIT=$(GIT_VERSION) \
+		--platform linux/amd64,linux/arm64 \
+		--push \
+		.
 
 .PHONY: publish-chart
 publish-chart:
@@ -170,8 +159,8 @@ publish-chart:
 .PHONY: hack-build
 hack-build:
 	docker build \
-		-f Dockerfile \
-		-t $(DOCKER_IMAGE_NAME):$(VERSION) \
+		-t $(DOCKER_IMAGE_NAME):$(IMMUTABLE_DOCKER_TAG) \
+		-t $(DOCKER_IMAGE_NAME):$(MUTABLE_DOCKER_TAG) \
 		--build-arg VERSION='$(VERSION)' \
 		--build-arg COMMIT='$(GIT_VERSION)' \
 		.
@@ -179,6 +168,7 @@ hack-build:
 .PHONY: hack-push
 hack-push: hack-build
 	docker push $(DOCKER_IMAGE_NAME):$(IMMUTABLE_DOCKER_TAG)
+	docker push $(DOCKER_IMAGE_NAME):$(MUTABLE_DOCKER_TAG)
 
 IMAGE_PULL_POLICY ?= Always
 
