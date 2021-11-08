@@ -3,6 +3,7 @@
 ![build](https://badgr.brigade2.io/v1/github/checks/brigadecore/brigade-noisy-neighbor/badge.svg?appID=99005)
 [![codecov](https://codecov.io/gh/brigadecore/brigade-noisy-neighbor/branch/main/graph/badge.svg?token=H4P57ZBUCY)](https://codecov.io/gh/brigadecore/brigade-noisy-neighbor)
 [![Go Report Card](https://goreportcard.com/badge/github.com/brigadecore/brigade-noisy-neighbor)](https://goreportcard.com/report/github.com/brigadecore/brigade-noisy-neighbor)
+[![slack](https://img.shields.io/badge/slack-brigade-brightgreen.svg?logo=slack)](https://kubernetes.slack.com/messages/C87MF1RFD)
 
 <img width="100" align="left" src="logo.png">
 
