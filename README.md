@@ -7,14 +7,12 @@
 
 <img width="100" align="left" src="logo.png">
 
-Brigade Noisy Neighbor emits events (noise) into a Brigade 2 installation's
-event bus at a configurable frequency. This is useful for applying load to a
-Brigade 2 installation for testing purposes or to gain operational insight.
+This is a work-in-progress component that emits events (noise) into a Brigade 2
+installation's event bus at a configurable frequency. This is useful for
+applying load to a Brigade 2 installation for testing purposes or to gain
+operational insight.
 
 <br clear="left"/>
-
-Brigade 2 itself is currently in an _beta_ state and remains under active
-development, as such, the same is true for this add-on component.
 
 ## Getting Started
 
@@ -23,9 +21,6 @@ Follow these steps to get started.
 ### Prerequisites
 
 An operational Brigade 2 installation is a prerequisite.
-
-Note that Brigade Noisy Neighbor is only compatible with the _beta_ series of
-Brigade 2 releases.
 
 If necessary, please refer to
 [Brigade 2's own getting started documentation](https://github.com/brigadecore/brigade/tree/v2)
