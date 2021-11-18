@@ -107,7 +107,7 @@ unless any projects are subscribed to those events.
 Here is an example project definition that subscribes to such events:
 
 ```yaml
-apiVersion: brigade.sh/v2-beta
+apiVersion: brigade.sh/v2
 kind: Project
 metadata:
   id: noisy-ned
