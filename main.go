@@ -6,8 +6,7 @@ import (
 	"time"
 
 	"github.com/brigadecore/brigade-foundations/version"
-	"github.com/brigadecore/brigade/sdk/v2"
-	"github.com/brigadecore/brigade/sdk/v2/core"
+	"github.com/brigadecore/brigade/sdk/v3"
 )
 
 func main() {
@@ -22,7 +21,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	apiClient := sdk.NewAPIClient(address, token, &opts)
+	eventsClient := sdk.NewEventsClient(address, token, &opts)
 
 	noiseFrequency, err := noiseFrequency()
 	if err != nil {
@@ -32,12 +31,13 @@ func main() {
 	ticker := time.NewTicker(noiseFrequency)
 	defer ticker.Stop()
 	for range ticker.C {
-		if _, err := apiClient.Core().Events().Create(
+		if _, err := eventsClient.Create(
 			context.Background(),
-			core.Event{
+			sdk.Event{
 				Source: "github.com/brigadecore/brigade-noisy-neighbor",
 				Type:   "noise",
 			},
+			nil,
 		); err != nil {
 			log.Println(err)
 		}
