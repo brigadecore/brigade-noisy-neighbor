@@ -71,7 +71,7 @@ the chart. Here we're storing a copy at `~/brigade-noisy-neighbor-values.yaml`:
 
 ```console
 $ helm inspect values oci://ghcr.io/brigadecore/brigade-noisy-neighbor \
-    --version v0.4.0 > ~/brigade-noisy-neighbor-values.yaml
+    --version v0.4.1 > ~/brigade-noisy-neighbor-values.yaml
 ```
 
 Edit the configuration (`~/brigade-noisy-neighbor-values.yaml` in this example).
@@ -91,7 +91,7 @@ Install Brigade Noisy Neighbor, referencing your edited configuration:
 ```console
 $ helm install brigade-noisy-neighbor \
     oci://ghcr.io/brigadecore/brigade-noisy-neighbor \
-    --version v0.4.0 \
+    --version v0.4.1 \
     --create-namespace \
     --namespace brigade-noisy-neighbor \
     --values ~/brigade-noisy-neighbor-values.yaml \
