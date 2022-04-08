@@ -171,7 +171,7 @@ publish-chart:
 	'
 
 ################################################################################
-# Targets to facilitate hacking on this component.                             #
+# Targets to facilitate hacking on this component                              #
 ################################################################################
 
 .PHONY: hack-kind-up
