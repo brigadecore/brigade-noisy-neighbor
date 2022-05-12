@@ -34,7 +34,7 @@ func main() {
 		if _, err := eventsClient.Create(
 			context.Background(),
 			sdk.Event{
-				Source: "github.com/brigadecore/brigade-noisy-neighbor",
+				Source: "brigade.sh/noisy-neighbor",
 				Type:   "noise",
 			},
 			nil,
