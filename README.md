@@ -41,12 +41,12 @@ required in subsequent steps and cannot be retrieved later through any other
 means.
 
 Now grant the service account permission to create events from the
-`github.com/brigadecore/brigade-noisy-neigbor` source:
+`brigade.sh/noisy-neighbor` source:
 
 ```console
 $ brig role grant EVENT_CREATOR
     --service-account brigade-noisy-neighbor \
-    --source github.com/brigadecore/brigade-noisy-neigbor
+    --source brigade.sh/noisy-neighbor
 ```
 
 ### Installing Brigade Noisy Neighbor
@@ -114,7 +114,7 @@ metadata:
 description: Noisy Ned subscribes to events from the Brigade Noisy Neighbor!
 spec:
   eventSubscriptions:
-  - source: brigade.sh/brigadecore/brigade-noisy-neighbor
+  - source: brigade.sh/noisy-neighbor
     types:
     - noise
   workerTemplate:
@@ -122,7 +122,7 @@ spec:
       brigade.js: | 
         const { events, Job } = require("@brigadecore/brigadier");
 
-        events.on("brigade.sh/brigadecore/brigade-noisy-neighbor", "noise", async event => {
+        events.on("brigade.sh/noisy-neighbor", "noise", async event => {
           let job = new Job("sleep", "debian:latest", event);
           job.primaryContainer.command = ["sleep"];
           job.primaryContainer.arguments = ["5"];
@@ -134,7 +134,7 @@ spec:
 ```
 
 Besides subscribing to noise events, this project definition also embeds a
-`brigade.js` script that will handle such events with a single job that sleep
+`brigade.js` script that will handle such events with a single job that sleeps
 for five seconds.
 
 Submit this project to Brigade:
