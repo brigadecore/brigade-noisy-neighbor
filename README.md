@@ -19,7 +19,7 @@ After [installation](docs/INSTALLATION.md), subscribe any number of Brigade
 to events emitted by this component -- all of which have a value of
 `brigade.sh/noisy-neighbor` in their `source` field and a value of `noise` in
 their `type` field. In the example project definition below, we subscribe to all
-all such events:
+such events:
 
 ```yaml
 apiVersion: brigade.sh/v2
@@ -73,7 +73,7 @@ $ brig event list --project noisy-ned
 Full coverage of `brig` commands is beyond the scope of this documentation, but
 at this point,
 [additional `brig` commands](https://docs.brigade.sh/topics/project-developers/brig/)
-can be applied to monitor and managed the events.
+can be applied to monitor and manage the events.
 
 ## Contributing
 
