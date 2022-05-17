@@ -71,4 +71,4 @@ You can then run `tilt up` to build and deploy this component from source.
 
 Proceed with creating one or more projects that subscribe to noise events by
 following the instructions from
-[this section](README.md#subscribing-to-noise-events) of `README.md`.
+[`README.md`](README.md).
