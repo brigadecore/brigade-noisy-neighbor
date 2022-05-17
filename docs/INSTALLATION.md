@@ -59,7 +59,7 @@
 
    ```shell
    $ helm inspect values oci://ghcr.io/brigadecore/brigade-noisy-neighbor \
-       --version v0.4.1 > ~/brigade-noisy-neighbor-values.yaml
+       --version v1.0.0 > ~/brigade-noisy-neighbor-values.yaml
    ```
 
 1. Edit `~/brigade-noisy-neighbor-values.yaml`, making the following changes:
@@ -80,7 +80,7 @@
    ```shell
    $ helm install brigade-noisy-neighbor \
        oci://ghcr.io/brigadecore/brigade-noisy-neighbor \
-       --version v0.4.1 \
+       --version v1.0.0 \
        --create-namespace \
        --namespace brigade-noisy-neighbor \
        --values ~/brigade-noisy-neighbor-values.yaml \
